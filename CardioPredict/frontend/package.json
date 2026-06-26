@@ -1,0 +1,11 @@
+{
+  "name": "cardiopredict-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "echo \"Frontend scaffold - not implemented\"",
+    "build": "echo \"Frontend scaffold - not implemented\""
+  }
+}
+
