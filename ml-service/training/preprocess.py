@@ -17,6 +17,11 @@ def clean_data(df):
     # Create age in years feature if not already present
     if 'age_years' not in df.columns:
         df['age_years'] = df['age'] // 365
+        
+    # Calculate BMI (Body Mass Index)
+    if 'bmi' not in df.columns:
+        df['bmi'] = (df['weight'] / ((df['height'] / 100) ** 2)).round(2)
+
     
     # Filter unrealistic blood pressures
     df = df[(df['ap_hi'] >= 50) & (df['ap_hi'] <= 250)]

@@ -1,8 +1,10 @@
+# pyrefly: ignore [missing-import]
 from fastapi import FastAPI
+from api.predict import predict_cardio
 
-app = FastAPI(title="CardioPredict ML Service")
+app = FastAPI()
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+@app.post("/predict")
+def predict(data: dict):
+    return predict_cardio(data)
 
