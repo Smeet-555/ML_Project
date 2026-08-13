@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CardioML - Cardiovascular Risk Assessment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="#" class="logo" id="logo-btn">
+        <div class="logo-icon">♥</div>
+        CardioML
+      </a>
+
+      <ul class="nav-links">
+        <li><a class="nav-link active" data-tab="tab-home">Assessment Form</a></li>
+        <li><a class="nav-link" data-tab="tab-benchmarks">Model Benchmarks</a></li>
+        <li><a class="nav-link" data-tab="tab-about">Architecture</a></li>
+      </ul>
+
+      <button class="btn-primary" id="predict-scroll-btn">Predict Risk</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- TAB 1: HOME / FORM -->
+      <div id="tab-home" class="tab-page active">
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <div>
+            <div class="hero-badge">⚡ AI Early Warning System</div>
+            <h1 class="hero-title">Cardiovascular Risk Assessment</h1>
+            <p class="hero-subtitle">
+              Our machine learning pipeline analyzes clinical variables to predict potential heart risks with precision.
+            </p>
+            <button class="btn-primary" id="start-btn">Start Assessment →</button>
+          </div>
+
+          <div class="hero-stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">📊 Accuracy Score</div>
+              <div class="stat-value">73.15%</div>
+              <div class="stat-desc">Tested on 70,000+ patient records</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">⚡ Instant Analysis</div>
+              <div class="stat-value">&lt; 1 sec</div>
+              <div class="stat-desc">Real-time prediction</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">🛡️ Privacy First</div>
+              <div class="stat-value">100% Safe</div>
+              <div class="stat-desc">No personal data stored</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">♥ Key Metrics</div>
+              <div class="stat-value">12 Indicators</div>
+              <div class="stat-desc">BP, BMI, Age, Lifestyle</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Prediction Form -->
+        <section id="form-section" class="card">
+          <h2 class="card-title">Patient Clinical Assessment Form</h2>
+          <p class="card-subtitle">Enter clinical metrics below to generate a real-time risk evaluation.</p>
+
+          <form id="prediction-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Age (Years)</label>
+                <input type="number" id="age_years" class="form-input" value="55" min="18" max="100" required />
+                <span class="form-hint">Patient age in years</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Gender</label>
+                <select id="gender" class="form-select">
+                  <option value="1">Female</option>
+                  <option value="2" selected>Male</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Height (cm)</label>
+                <input type="number" id="height" class="form-input" value="170" min="100" max="220" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Weight (kg)</label>
+                <input type="number" id="weight" class="form-input" value="75" min="30" max="200" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Systolic BP (ap_hi)</label>
+                <input type="number" id="ap_hi" class="form-input" value="130" min="60" max="240" required />
+                <span class="form-hint">Normal: 90 - 120 mmHg</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Diastolic BP (ap_lo)</label>
+                <input type="number" id="ap_lo" class="form-input" value="85" min="40" max="140" required />
+                <span class="form-hint">Normal: 60 - 80 mmHg</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Cholesterol Level</label>
+                <select id="cholesterol" class="form-select">
+                  <option value="1" selected>Normal</option>
+                  <option value="2">Above Normal</option>
+                  <option value="3">Well Above Normal</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Glucose Level</label>
+                <select id="gluc" class="form-select">
+                  <option value="1" selected>Normal</option>
+                  <option value="2">Above Normal</option>
+                  <option value="3">Well Above Normal</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Smoking Status</label>
+                <select id="smoke" class="form-select">
+                  <option value="0" selected>Non-Smoker</option>
+                  <option value="1">Smoker</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Alcohol Intake</label>
+                <select id="alco" class="form-select">
+                  <option value="0" selected>No</option>
+                  <option value="1">Yes</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Physical Activity</label>
+                <select id="active" class="form-select">
+                  <option value="1" selected>Physically Active</option>
+                  <option value="0">Inactive</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary btn-full" id="submit-btn">Generate Risk Prediction</button>
+          </form>
+
+          <!-- Result Card -->
+          <div id="result-card" class="result-card">
+            <div class="result-header">
+              <div>
+                <span id="result-badge" class="result-badge">Low Risk</span>
+                <h3 class="result-title">Cardiovascular Risk Evaluation</h3>
+              </div>
+              <div id="result-score" class="result-score">0%</div>
+            </div>
+
+            <p id="result-desc" class="result-desc">Processing...</p>
+
+            <div class="result-metrics-row">
+              <div><strong>Computed BMI:</strong> <span id="bmi-val">--</span> kg/m²</div>
+              <div><strong>BP Ratio:</strong> <span id="bp-val">--</span> mmHg</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 2: BENCHMARKS -->
+      <div id="tab-benchmarks" class="tab-page">
+        <div class="card">
+          <h2 class="card-title">💻 Model Benchmarks & Performance</h2>
+          <p class="card-subtitle">Comprehensive metrics evaluated across dataset records (Week 4 Evaluation).</p>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>MODEL NAME</th>
+                  <th>ALGORITHM TYPE</th>
+                  <th>ACCURACY</th>
+                  <th>F1 SCORE</th>
+                  <th>STATUS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Decision Tree Classifier</strong></td>
+                  <td>Tree Classifier</td>
+                  <td><strong style="color: var(--color-primary);">73.15%</strong></td>
+                  <td>0.7137</td>
+                  <td><span class="status-tag active">Trained Model</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Logistic Regression</strong></td>
+                  <td>Linear Classification</td>
+                  <td><strong style="color: var(--color-primary);">72.71%</strong></td>
+                  <td>0.7072</td>
+                  <td><span class="status-tag active">Trained Model</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="card-title">Key Feature Importance (Decision Tree)</h3>
+          <div class="feature-list">
+            <div class="feature-item">
+              <span class="feature-name">Systolic Blood Pressure (ap_hi)</span>
+              <span class="feature-value">78.37%</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-name">Age (Years)</span>
+              <span class="feature-value">12.28%</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-name">Cholesterol Level</span>
+              <span class="feature-value">7.45%</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-name">Glucose Level</span>
+              <span class="feature-value">0.72%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: ABOUT -->
+      <div id="tab-about" class="tab-page">
+        <div class="card">
+          <h2 class="card-title">✨ Pipeline Architecture</h2>
+          <p class="card-subtitle">Full-stack machine learning pipeline details for Darshan University ML Project SOP.</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+            <div style="padding: 1.25rem; border: 1px solid var(--border-light); border-radius: var(--radius-md);">
+              <h3>1. Preprocessing</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
+                Calculated age in years, derived BMI, filtered blood pressure outliers.
+              </p>
+            </div>
+            <div style="padding: 1.25rem; border: 1px solid var(--border-light); border-radius: var(--radius-md);">
+              <h3>2. Model Training</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
+                Includes library & scratch implementations for Logistic Regression and Decision Tree Classifier.
+              </p>
+            </div>
+            <div style="padding: 1.25rem; border: 1px solid var(--border-light); border-radius: var(--radius-md);">
+              <h3>3. FastAPI Backend</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
+                RESTful prediction API with CORS support and JSON payload processing.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2026 CardioML Assessment System. Developed for Computer Engineering Department ML Project SOP.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
