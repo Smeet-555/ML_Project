@@ -1,7 +1,10 @@
 import json
 import math
+from pathlib import Path
 
-with open("models/model.json", "r") as f:
+MODEL_PATH = Path(__file__).resolve().parent.parent / "models" / "model.json"
+
+with open(MODEL_PATH, "r") as f:
     model_data = json.load(f)
 
 feature_cols = model_data["feature_cols"]

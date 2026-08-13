@@ -1,10 +1,15 @@
 import json
+from pathlib import Path
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 
-df = pd.read_csv("dataset/processed/cardio_cleaned.csv", sep=";")
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_PATH = BASE_DIR / "dataset" / "processed" / "cardio_cleaned.csv"
+MODEL_PATH = BASE_DIR / "models" / "model.json"
+
+df = pd.read_csv(DATA_PATH, sep=";")
 
 feature_cols = [
     'age_years', 'gender', 'height', 'weight', 'bmi',
@@ -31,7 +36,8 @@ model_data = {
     "scale": scaler.scale_.tolist()
 }
 
-with open("models/model.json", "w") as f:
+MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
+with open(MODEL_PATH, "w") as f:
     json.dump(model_data, f, indent=2)
 
-print("Logistic Regression model trained and saved to models/model.json")
+print(f"Logistic Regression model trained and saved to {MODEL_PATH}")
